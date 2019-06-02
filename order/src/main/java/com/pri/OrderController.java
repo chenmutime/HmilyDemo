@@ -20,7 +20,6 @@ public class OrderController {
         order.setId(id);
         order.setName("phone");
         order.setStatus("0");
-        orderService.createOrder(order);
-        return order.getId();
+        return orderService.createOrder(order);
     }
 }

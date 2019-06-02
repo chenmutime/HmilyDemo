@@ -20,19 +20,8 @@ public class UserController {
         user.setName("hmm");
         user.setBalance(22.0);
         user.setStatus("0");
-        userService.tryPayment(user);
-        return "" + id;
+        Double balance = userService.tryPayment(user);
+        return "" + balance;
     }
 
-    @GetMapping("/confirmPayment/{id}")
-    public String confirmPayment(@PathVariable String id){
-        userService.confirmPayment(id);
-        return "" + id;
-    }
-
-    @GetMapping("/cancelPayment/{id}")
-    public String cancelPayment(@PathVariable String id){
-        userService.cancelPayment(id);
-        return "" + id;
-    }
 }

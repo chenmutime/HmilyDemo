@@ -1,6 +1,8 @@
 package com.pri;
 
 import org.dromara.hmily.annotation.Hmily;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,8 @@ import javax.transaction.Transactional;
 
 @Service
 public class OrderService {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private OrderDao orderDao;
@@ -18,20 +22,20 @@ public class OrderService {
     public String createOrder(Order order){
         orderDao.save(order);
         remoteUserService.tryPayment(order.getId());
-        int i = 1/0;
+        logger.info("创建订单");
         return order.getId();
     }
 
     public void confirmOrder(Order order){
         order.setStatus("1");
         orderDao.save(order);
-        remoteUserService.confirmPayment(order.getId());
+        logger.info("确认订单");
     }
 
     public void cancelOrder(Order order){
         order.setStatus("2");
         orderDao.save(order);
-        remoteUserService.cancelPayment(order.getId());
+        logger.info("取消订单");
     }
 
 }

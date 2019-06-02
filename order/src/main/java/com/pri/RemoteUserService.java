@@ -9,12 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface RemoteUserService {
 
     @GetMapping("/user/tryPayment/{id}")
+    @Hmily
     String tryPayment(@PathVariable String id);
 
-    @GetMapping("/user/confirmPayment/{id}")
-    void confirmPayment(@PathVariable String id);
-
-    @GetMapping("/user/cancelPayment/{id}")
-    void cancelPayment(@PathVariable String id);
 
 }
