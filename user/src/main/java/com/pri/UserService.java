@@ -5,8 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 
 @Service
 public class UserService {
@@ -35,7 +35,7 @@ public class UserService {
      * @param
      * @return
      */
-//    @Transactional
+    @Transactional
     public boolean confirmPayment(User user) {
         logger.info("确认冻结资金");
         user = userDao.getOne(user.getId());
@@ -51,7 +51,7 @@ public class UserService {
      * @param
      * @return
      */
-//    @Transactional
+    @Transactional
     public boolean cancelPayment(User user) {
         logger.info("取消冻结资金");
         user = userDao.getOne(user.getId());

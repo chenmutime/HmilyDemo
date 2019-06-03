@@ -5,8 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderService {
@@ -26,12 +25,14 @@ public class OrderService {
         return order.getId();
     }
 
+    @Transactional
     public void confirmOrder(Order order){
         order.setStatus("1");
         orderDao.save(order);
         logger.info("确认订单");
     }
 
+    @Transactional
     public void cancelOrder(Order order){
         order.setStatus("2");
         orderDao.save(order);
